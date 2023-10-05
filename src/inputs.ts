@@ -55,7 +55,7 @@ export async function getInputs(): Promise<Inputs> {
     awsSecretAccessKey: getInput('aws-secret-access-key')
   };
   if (isECRRepository(inputs.repository)) {
-    if (!isSelfHostedRunner()) {
+    if (!isSelfHostedRunner())  {
       exportCredentials(inputs.awsAccessKeyId, inputs.awsSecretAccessKey);
     }
     inputs.username = 'AWS';
@@ -65,7 +65,7 @@ export async function getInputs(): Promise<Inputs> {
 }
 
 function defaultRepository(): string {
-  return `eu.gcr.io/tradeshift-base/${context.repo.repo}`;
+  return `eu.gcr.io/theros-base/${context.repo.repo}`;
 }
 
 async function getInputList(

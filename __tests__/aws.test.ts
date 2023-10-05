@@ -17,7 +17,7 @@ describe(isECRRepository, () => {
   });
 
   it('returns false when given a non-ECR repository', () => {
-    expect(isECRRepository('eu.gcr.io/tradeshift-base/my-image')).toEqual(
+    expect(isECRRepository('eu.gcr.io/theros-base/my-image')).toEqual(
       false
     );
     expect(isECRRepository('test')).toEqual(false);
@@ -27,7 +27,7 @@ describe(isECRRepository, () => {
 
 describe('getRegion', () => {
   it('returns us-east-1 when given an ECR public repository', () => {
-    expect(getRegion('public.ecr.aws/tradeshift/my-image')).toEqual(
+    expect(getRegion('public.ecr.aws/theros/my-image')).toEqual(
       'us-east-1'
     );
   });
