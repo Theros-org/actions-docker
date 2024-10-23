@@ -6,12 +6,12 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     outputs:
       needs-update: ${{ steps.diff.outcome != 'success' }}
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/cache@v3
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
         with:
           path: ~/.npm
           key: npm-${{ hashFiles('package-lock.json') }}
@@ -37,7 +37,7 @@ jobs:
           gpg-key: ${{ secrets.THEROSCI_GPG_KEY }}
       
       - name: PR build changes if needed
-        uses: theros-org/create-pull-request@v4
+        uses: theros-org/create-pull-request@v6
         if: ${{ steps.diff.outcome != 'success' }}
         with:
           commit-message: "build: update dist folder"
@@ -62,7 +62,7 @@ jobs:
     needs: [build]
     if: ${{ needs.build.outputs.needs-update != 'true' }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: theros-org/actions-semantic-release@v1
         id: semantic-release
         with:

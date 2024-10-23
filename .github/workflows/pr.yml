@@ -1,17 +1,14 @@
 name: "pr"
-on:
-  push:
-    branches: ["master"]
-  pull_request:
+on: [pull_request]
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           path: ~/.npm
           key: npm-${{ hashFiles('package-lock.json') }}
@@ -31,9 +28,9 @@ jobs:
         run: git diff --quiet dist
 
   self-check:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
@@ -51,7 +48,7 @@ jobs:
           docker pull ${{ steps.build.outputs.image }}
 
   self-check-custom-tag:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
         with:
@@ -80,3 +77,21 @@ jobs:
             exit 1;
           fi;
           echo "Confirmed: Default tag not found"
+
+  semantic-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Dry-run release
+        uses: theros-org/actions-semantic-release@v1
+        id: semantic-release
+        with:
+          dry_run: true
+          check_name: Semantic release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Lint commit messages
+        uses: theros-org/commitlint-github-action@v5
+

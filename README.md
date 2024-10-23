@@ -9,7 +9,7 @@ the process:
 - Setup buildx builder
 - Build and push image
 
-## Usage `tradeshift/actions-docker@v1`
+## Usage `theros-org/actions-docker@v1`
 
 The following are a few different usage examples
 
@@ -23,8 +23,8 @@ jobs:
   docker:
     runs-on: [self-hosted,ts-large-x64-docker-large]
     steps:
-      - uses: actions/checkout@v2
-      - uses: tradeshift/actions-docker@v1
+      - uses: actions/checkout@v4
+      - uses: theros-org/actions-docker@v1
         with:
           password: ${{ secrets.GCLOUD_SERVICE_ACCOUNT_KEY_NOBASE64 }}
 ```
@@ -44,17 +44,17 @@ jobs:
   docker:
     runs-on: [self-hosted,ts-large-x64-docker-large]
     steps:
-      - uses: actions/checkout@v2
-      - uses: tradeshift/actions-docker@v1
+      - uses: actions/checkout@v4
+      - uses: theros-org/actions-docker@v1
         with:
           password: ${{ secrets.GCLOUD_SERVICE_ACCOUNT_KEY_NOBASE64 }}
           file: Dockerfile.a
-          repository: eu.gcr.io/tradeshift-base/my-repo-image-a
-      - uses: tradeshift/actions-docker@v1
+          repository: eu.gcr.io/theros-base/my-repo-image-a
+      - uses: theros-org/actions-docker@v1
         with:
           password: ${{ secrets.GCLOUD_SERVICE_ACCOUNT_KEY_NOBASE64 }}
           file: Dockerfile.b
-          repository: eu.gcr.io/tradeshift-base/my-repo-image-b
+          repository: eu.gcr.io/theros-base/my-repo-image-b
 ```
 
 Another example where we have a dedicated folder for each of the images. The
@@ -66,17 +66,17 @@ jobs:
   docker:
     runs-on: [self-hosted,ts-large-x64-docker-large]
     steps:
-      - uses: actions/checkout@v2
-      - uses: tradeshift/actions-docker@v1
+      - uses: actions/checkout@v4
+      - uses: theros-org/actions-docker@v1
         with:
           password: ${{ secrets.GCLOUD_SERVICE_ACCOUNT_KEY_NOBASE64 }}
           context: image-a
-          repository: eu.gcr.io/tradeshift-base/my-repo-image-a
-      - uses: tradeshift/actions-docker@v1
+          repository: eu.gcr.io/theros-base/my-repo-image-a
+      - uses: theros-org/actions-docker@v1
         with:
           password: ${{ secrets.GCLOUD_SERVICE_ACCOUNT_KEY_NOBASE64 }}
           context: image-b
-          repository: eu.gcr.io/tradeshift-base/my-repo-image-b
+          repository: eu.gcr.io/theros-base/my-repo-image-b
 ```
 
 ### Setting additional tags
@@ -90,18 +90,18 @@ jobs:
   docker:
     runs-on: [self-hosted,ts-large-x64-docker-large]
     steps:
-      - uses: actions/checkout@v2
-      - uses: tradeshift/actions-docker@v1
+      - uses: actions/checkout@v4
+      - uses: theros-org/actions-docker@v1
         with:
           password: ${{ secrets.GCLOUD_SERVICE_ACCOUNT_KEY_NOBASE64 }}
           tags: |
-            eu.gcr.io/tradeshift-base/my-repo:master
-            eu.gcr.io/tradeshift-base/my-repo:latest
+            eu.gcr.io/theros-base/my-repo:master
+            eu.gcr.io/theros-base/my-repo:latest
 ```
 
-### Image tracability with labels
+### Image traceability with labels
 
-If you want to be able to lookup the repository for your image, or add more medata
+If you want to be able to lookup the repository for your image, or add more metadata
 you can add labels.
 
 ```yaml
@@ -109,8 +109,8 @@ jobs:
   docker:
     runs-on: [self-hosted,ts-large-x64-docker-large]
     steps:
-      - uses: actions/checkout@v2
-      - uses: tradeshift/actions-docker@v1
+      - uses: actions/checkout@v4
+      - uses: theros-org/actions-docker@v1
         with:
           password: ${{ secrets.GCLOUD_SERVICE_ACCOUNT_KEY_NOBASE64 }}
           labels: |
@@ -127,14 +127,14 @@ jobs:
   docker:
     runs-on: [self-hosted,ts-large-x64-docker-large]
     steps:
-      - uses: actions/checkout@v2
-      - uses: tradeshift/actions-docker@v1
+      - uses: actions/checkout@v4
+      - uses: theros-org/actions-docker@v1
         with:
           password: ${{ secrets.GCLOUD_SERVICE_ACCOUNT_KEY_NOBASE64 }}
           repo-cache: true
 ```
 
-We currently dont support docker registry caching but that should be
+We currently don't support docker registry caching but that should be
 implemented in the future.
 
 ### Platform
@@ -146,8 +146,8 @@ jobs:
   docker:
     runs-on: [self-hosted,ts-large-x64-docker-large]
     steps:
-      - uses: actions/checkout@v2
-      - uses: tradeshift/actions-docker@v1
+      - uses: actions/checkout@v4
+      - uses: theros-org/actions-docker@v1
         with:
           password: ${{ secrets.GCLOUD_SERVICE_ACCOUNT_KEY_NOBASE64 }}
           platform: linux/amd64,linux/arm6
