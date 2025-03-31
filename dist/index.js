@@ -94653,7 +94653,7 @@ module.exports = parseParams
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"Version":"2012-10-17","Statement":[{"Sid":"OrganizationReadOnlyAccess","Effect":"Allow","Principal":"*","Action":["ecr:BatchCheckLayerAvailability","ecr:BatchGetImage","ecr:DescribeImageScanFindings","ecr:DescribeImages","ecr:DescribeRepositories","ecr:GetAuthorizationToken","ecr:GetDownloadUrlForLayer","ecr:GetRepositoryPolicy","ecr:ListImages"],"Condition":{"StringLike":{"aws:PrincipalOrgID":"o-mt7csvo0g4"}}}]}');
+module.exports = JSON.parse('{"Version":"2012-10-17","Statement":[{"Sid":"OrganizationReadOnlyAccess","Effect":"Allow","Principal":"*","Action":["ecr:BatchCheckLayerAvailability","ecr:BatchGetImage","ecr:DescribeImageScanFindings","ecr:DescribeImages","ecr:DescribeRepositories","ecr:GetAuthorizationToken","ecr:GetDownloadUrlForLayer","ecr:GetRepositoryPolicy","ecr:ListImages"],"Condition":{"StringLike":{"aws:PrincipalOrgID":"o-mt7csvo0g4"}}},{"Sid":"AllowCrossAccountPushPull","Effect":"Allow","Principal":{"AWS":["arn:aws:iam::176800962147:role/iam_all_casb_eks-deployer-batch","arn:aws:iam::042762159578:role/iam_all_capd_eks-deployer-batch","arn:aws:iam::312467319603:role/iam_all_gosb_eks-deployer-batch","arn:aws:iam::232835357723:role/iam_all_gopd_eks-deployer-batch"]},"Action":["ecr:BatchCheckLayerAvailability","ecr:BatchGetImage","ecr:CompleteLayerUpload","ecr:DescribeImageScanFindings","ecr:DescribeImages","ecr:DescribeRepositories","ecr:GetAuthorizationToken","ecr:GetDownloadUrlForLayer","ecr:GetRepositoryPolicy","ecr:InitiateLayerUpload","ecr:ListImages","ecr:PutImage","ecr:UploadLayerPart"]}]}');
 
 /***/ }),
 
